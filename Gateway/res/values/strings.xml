@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Gateway</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="enterprise_device_admin">EDM - QuickBlox</string>
+    <string name="enterprise_device_admin_summary">EnterpriseDeviceAdmin class for administering the user\'s device.</string>
+    <string name="enterprise_device_admin_description">Device manager.</string>
+    
+     <string name="admin_receiver_status">QuickBlox Device Admin: %1$s</string>
+    <string name="admin_receiver_status_enabled">enabled</string>
+    <string name="admin_receiver_status_disabled">disabled</string>
+    <string name="admin_receiver_status_pw_changed">pw changed</string>
+    <string name="admin_receiver_status_pw_failed">pw failed</string>
+    <string name="admin_receiver_status_pw_succeeded">pw succeeded</string>
+    <string name="admin_receiver_status_disable_warning">This is an optional message to warn the user about disabling.</string>
+    
+</resources>
