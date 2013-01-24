@@ -1,0 +1,51 @@
+{
+	"properties":{
+		"geo_datum": {
+			"type":"object",
+			"id": "location",
+			"required":true,
+			"properties":{
+				"application_id": {
+					"type":"number",
+					"id": "application_id",
+					"required":true
+				},
+				"created_at": {
+					"type":"string",
+					"id": "created_at",
+					"required":true
+				},
+				"id": {
+					"type":"number",
+					"id": "id",
+					"required":true
+				},
+				"latitude": {
+					"type":"string",
+					"id": "latitude",
+					"required":true
+				},
+				"longitude": {
+					"type":"string",
+					"id": "longitude",
+					"required":true
+				},
+				"status": {
+					"type":"string",
+					"id": "status",
+					"required":true
+				},
+				"updated_at": {
+					"type":"string",
+					"id": "updated_at",
+					"required":true
+				},
+				"user_id": {
+					"type":"number",
+					"id": "user_id",
+					"required":true
+				}
+			}
+		}
+	}
+}

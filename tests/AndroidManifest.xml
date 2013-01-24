@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.quickblox.android.framework.tests"
+          android:versionCode="1"
+          android:versionName="1.0">
+
+    <application>
+        <uses-library android:name="android.test.runner"/>
+    </application>
+
+    <instrumentation android:name=".StageTestRunner"
+                     android:targetPackage="com.quickblox.android.framework"
+                     android:label="Stage (pre-production) tests for com.quickblox.android.framework"/>
+
+    <instrumentation android:name=".ProductionTestRunner"
+                     android:targetPackage="com.quickblox.android.framework"
+                     android:label="Production tests for com.quickblox.android.framework"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+</manifest>

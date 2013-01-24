@@ -1,0 +1,184 @@
+{
+	"type":"object",
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"id": "#",
+	"required":true,
+	"properties":{
+		"current_page": {
+			"type":"number",
+			"id": "current_page",
+			"required":true
+		},
+		"items": {
+			"type":"array",
+			"id": "items",
+			"required":true,
+			"items":
+				{
+					"type":"object",
+					"id": "0",
+					"required":true,
+					"properties":{
+						"geo_datum": {
+							"type":"object",
+							"id": "geo_datum",
+							"required":true,
+							"properties":{
+								"application_id": {
+									"type":"number",
+									"id": "application_id",
+									"required":true,
+									"properties":{
+										"RenameMe": {
+											"required":true
+										}
+									}
+								},
+								"created_at_timestamp": {
+									"type":"number",
+									"id": "created_at_timestamp",
+									"required":true
+								},
+								"created_at": {
+									"type":"string",
+									"id": "created_at",
+									"required":true
+								},
+								"id": {
+									"type":"number",
+									"id": "id",
+									"required":true
+								},
+								"latitude": {
+									"type":"string",
+									"id": "latitude",
+									"required":true
+								},
+								"longitude": {
+									"type":"string",
+									"id": "longitude",
+									"required":true
+								},
+								"status": {
+									"type":"string",
+									"id": "status",
+									"required":true
+								},
+								"updated_at": {
+									"type":"string",
+									"id": "updated_at",
+									"required":true
+								},
+								"user_id": {
+									"type":"number",
+									"id": "user_id",
+									"required":true
+								},
+								"user": {
+									"type":"object",
+									"id": "user",
+									"required":true,
+									"properties":{
+										"user": {
+											"type":"object",
+											"id": "user",
+											"required":true,
+											"properties":{
+												"blob_id": {
+													"type":["null", "string"],
+													"id": "blob_id",
+													"required":true
+												},
+												"created_at": {
+													"type":"string",
+													"id": "created_at",
+													"required":true
+												},
+												"email": {
+													"type":["null", "string"],
+													"id": "email",
+													"required":true
+												},
+												"external_user_id": {
+													"type":["number", "null"],
+													"id": "external_user_id",
+													"required":true
+												},
+												"facebook_id": {
+													"type":["null", "string"],
+													"id": "facebook_id",
+													"required":true
+												},
+												"full_name": {
+													"type":"string",
+													"id": "full_name",
+													"required":true
+												},
+												"id": {
+													"type":"number",
+													"id": "id",
+													"required":true
+												},
+												"last_request_at": {
+													"type":"string",
+													"id": "last_request_at",
+													"required":true
+												},
+												"login": {
+													"type":"string",
+													"id": "login",
+													"required":true
+												},
+												"owner_id": {
+													"type":"number",
+													"id": "owner_id",
+													"required":true
+												},
+												"phone": {
+													"type":["null", "string"],
+													"id": "phone",
+													"required":true
+												},
+												"twitter_id": {
+													"type":["null", "string"],
+													"id": "twitter_id",
+													"required":true
+												},
+												"updated_at": {
+													"type":"string",
+													"id": "updated_at",
+													"required":true
+												},
+												"user_tags": {
+													"type":["null", "string"],
+													"id": "user_tags",
+													"required":true
+												},
+												"website": {
+													"type":["null", "string"],
+													"id": "website",
+													"required":true
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			
+
+		},
+		"per_page": {
+			"type":"number",
+			"id": "per_page",
+			"required":true
+		},
+		"total_entries": {
+			"type":"number",
+			"id": "total_entries",
+			"required":true
+		}
+	}
+}

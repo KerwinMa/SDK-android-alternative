@@ -1,0 +1,14 @@
+<project name="Android QuickBlox SDK" basedir=".">
+    <property name="release.dir" value="release"/>
+    <property name="out.dir" value="out/artifacts/quickblox_android"/>
+    <property name="jar.fileName" value="quickblox-android"/>
+    <property name="jar.fileExt" value=".jar"/>
+    <property name="jar.file" value="${jar.fileName}${jar.fileExt}"/>
+    <property file="src/com/quickblox/android/framework/base/models/version.properties"/>
+
+    <target name="release-build">
+        <delete dir="${release.dir}"/>
+        <mkdir dir="${release.dir}"/>
+        <copy file="${out.dir}/${jar.file}" tofile="${release.dir}/${jar.fileName}-${versionName}${jar.fileExt}"/>
+    </target>
+</project>
