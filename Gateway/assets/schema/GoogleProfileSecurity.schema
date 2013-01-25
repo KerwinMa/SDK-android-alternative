@@ -1,0 +1,40 @@
+{
+    "classname": "GoogleProfileSecurity",
+    "fields": [
+        {
+            "name": "_id",
+            "type": "string",
+            "array": false
+        },
+        {
+            "name": "_parent_id",
+            "type": "string",
+            "array": false
+        },
+        {
+            "name": "allowwipedisabled",
+            "type": "boolean",
+            "array": false
+        },
+        {
+            "name": "storageencryption",
+            "type": "boolean",
+            "array": false
+        },
+        {
+            "name": "user_id",
+            "type": "string",
+            "array": false
+        },
+        {
+            "name": "created_at",
+            "type": "integerDate",
+            "array": false
+        },
+        {
+            "name": "updated_at",
+            "type": "integerDate",
+            "array": false
+        }
+    ]
+}

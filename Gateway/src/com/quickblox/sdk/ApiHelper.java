@@ -6,10 +6,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -18,7 +20,6 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import uk.co.madmouse.core.Interfaces.IHttpResponse;
 import uk.co.madmouse.core.utils.Util;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -37,7 +38,8 @@ import com.quickblox.sdk.data.ApplicationTableBuilder;
 import com.quickblox.sdk.data.QuickBloxContentProvider;
 import com.quickblox.sdk.data.UserDataTableBuilder;
 import com.quickblox.sdk.data.interfaces.IApplicationTableBuilder;
-import com.quickblox.sdk.data.interfaces.IUserDataTableBuilder;
+import com.quickblox.sdk.interfaces.IDataSchema;
+import com.quickblox.sdk.interfaces.IDataSchemaCallback;
 import com.quickblox.sdk.interfaces.ISession;
 import com.quickblox.sdk.interfaces.ISessionCallBack;
 import com.quickblox.sdk.interfaces.IUser;
@@ -62,6 +64,8 @@ public class ApiHelper {
 
 	private static final String HEADER_CONTENTTYPE_VALUE = "application/json";
 	private static final String HEADER_QB_API_VERSION_VALUE = "0.1.0";
+
+	public static final SimpleDateFormat mQBDateFormater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 	public interface HTTPColumns{
 		public static final String HTTP_APPLICATION_ID = "application_id";
@@ -108,7 +112,7 @@ public class ApiHelper {
 
 	public static ISession createApplicationSession(Context context, String account, Integer applicationId, String nonce,String authKey, String authSecret, ISessionCallBack sessionCallBack) throws InvalidKeyException, NoSuchAlgorithmException, JSONException, MalformedURLException, IOException{
 		Long timeStamp = System.currentTimeMillis() / 1000;
-		String signature = Util.hmac_sha1(String.format("%s=%d&%s=%s&%s=%s&%s=%d", 	HTTPColumns.HTTP_APPLICATION_ID, applicationId,
+		String signature = Util.hmac_sha1(String.format(Locale.US, "%s=%d&%s=%s&%s=%s&%s=%d", 	HTTPColumns.HTTP_APPLICATION_ID, applicationId,
 				HTTPColumns.HTTP_AUTH_KEY, authKey,
 				HTTPColumns.HTTP_NONCE, nonce,
 				HTTPColumns.HTTP_TIMESTAMP, timeStamp), authSecret);
@@ -275,7 +279,7 @@ public class ApiHelper {
 		total_entries,
 		items;
 	}
-	
+
 	private static void createUserLists(Context context, Integer applicationId, String account,Integer page, List<IUser> userList, IUserCallBack userCallBack) throws MalformedURLException, IOException{
 		Map<String,List<String>> headers = getDefaultHeaders();
 		addAppSpecificHeaderData(context, applicationId, headers);
@@ -301,7 +305,7 @@ public class ApiHelper {
 						if(BuildConfig.DEBUG){
 							Log.d(TAG,"User Parser :" + name);
 						}
-						
+
 						final boolean isNull = jsonReader.peek() == JsonToken.NULL;
 						if( name.equals( IUsersTags.current_page.name()) &&  !isNull ) {
 							currentPage = jsonReader.nextInt();
@@ -335,17 +339,17 @@ public class ApiHelper {
 	public static List<IUser> listUsers(Context context, Integer applicationId, String account) throws MalformedURLException, IOException{
 		return listUsers(context, applicationId, account, null);
 	}
-	
+
 	public static List<IUser> listUsers(Context context, Integer applicationId, String account, IUserCallBack userCallBack) throws MalformedURLException, IOException{
 		List<IUser> userList = new ArrayList<IUser>();
 		createUserLists(context, applicationId, account, 1, userList, userCallBack);  
 		return userList;	
 	}
-	
+
 	public static IUser updateUser(Context context, Integer applicationId, String account, IUser userObject) throws MalformedURLException, IOException, JSONException{
 		return updateUser(context, applicationId, account, userObject, null);
 	}
-	
+
 	public static IUser updateUser(Context context, Integer applicationId, String account, IUser userObject, IUserCallBack userCallBack) throws MalformedURLException, IOException, JSONException{
 
 		Map<String,List<String>> headers = getDefaultHeaders();
@@ -377,6 +381,19 @@ public class ApiHelper {
 			}
 		}
 		return resultUser;	
+	}
+
+	public static IDataSchema createDataSchema(Context context, Integer applicationId, String account, String className,  IDataSchemaCallback dataSchemaCallback) throws IOException{
+		JsonReader jsonReader = Utils.loadAssetSchemaJson(context, className);
+
+		IDataSchema dataSchema = null;
+		if(jsonReader != null){
+			dataSchema = new DataSchema(jsonReader);
+			if(dataSchemaCallback != null){
+				dataSchemaCallback.onDataSchemaCreated(account, applicationId, dataSchema);
+			}
+		}
+		return dataSchema;
 	}
 
 }

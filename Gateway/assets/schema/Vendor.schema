@@ -1,0 +1,40 @@
+{
+    "classname": "Vendor",
+    "fields": [
+        {
+            "name": "_id",
+            "type": "string",
+            "array": false
+        },
+        {
+            "name": "_parent_id",
+            "type": "string",
+            "array": false
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "array": false
+        },
+        {
+            "name": "enabled",
+            "type": "boolean",
+            "array": false
+        },
+        {
+            "name": "user_id",
+            "type": "string",
+            "array": false
+        },
+        {
+            "name": "created_at",
+            "type": "integerDate",
+            "array": false
+        },
+        {
+            "name": "updated_at",
+            "type": "integerDate",
+            "array": false
+        }
+    ]
+}
