@@ -1,10 +1,8 @@
 package com.quickblox.sdk;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -15,17 +13,11 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.apache.http.protocol.HTTP;
-
-import uk.co.madmouse.core.HttpResponse;
-import uk.co.madmouse.core.Interfaces.IHttpResponse;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.JsonReader;
 import android.util.Log;
 
 import com.quickblox.gateway.BuildConfig;
-import com.quickblox.sdk.interfaces.ISession;
 
 
 
@@ -75,12 +67,6 @@ public class HttpUtils {
 			Map<String,List<String>> headers,
 			String messageBody) throws MalformedURLException, IOException {
 		
-		// random string as boundary for multi-part http post
-		String strBoundary = "3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2fqd:fm3i";
-		String endLine = "\r\n";
-
-		IHttpResponse responseResult = null;
-
 		if (method.equals( Method.GET)) {
 			url = url + "?" + encodeUrl(params);
 		}
@@ -146,17 +132,17 @@ public class HttpUtils {
 		return connection;
 	}
 
-	private static String read(InputStream in) throws IOException {
-		try{
-			StringBuilder sb = new StringBuilder();
-			BufferedReader r = new BufferedReader(new InputStreamReader(in), 1000);
-			for (String line = r.readLine(); line != null; line = r.readLine()) {
-				sb.append(line);
-			}
-			return sb.toString();
-		} catch (IOException e){
-			return null;
-		}
-	}
+//	private static String read(InputStream in) throws IOException {
+//		try{
+//			StringBuilder sb = new StringBuilder();
+//			BufferedReader r = new BufferedReader(new InputStreamReader(in), 1000);
+//			for (String line = r.readLine(); line != null; line = r.readLine()) {
+//				sb.append(line);
+//			}
+//			return sb.toString();
+//		} catch (IOException e){
+//			return null;
+//		}
+//	}
 
 }

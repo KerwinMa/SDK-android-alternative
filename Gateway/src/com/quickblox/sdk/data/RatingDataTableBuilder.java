@@ -15,7 +15,7 @@ import android.util.Log;
 import com.quickblox.sdk.data.DataTableConstants.IDataTablesMatch;
 import com.quickblox.sdk.data.interfaces.IRatingsDataTableBuilder;
 
-public class RatingDataTableBuilder extends DataTableBuilder implements IRatingsDataTableBuilder {
+class RatingDataTableBuilder extends DataTableBuilder implements IRatingsDataTableBuilder {
 
 	private static final String GAMEMODE_TAG = "gameMode";
 	private static final String GAMEMODE_DELETED_TAG = "deletedGameMode";

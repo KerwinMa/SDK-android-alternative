@@ -2,7 +2,6 @@ package com.quickblox.sdk;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,13 +20,12 @@ import com.quickblox.sdk.data.interfaces.IRatingsDataTableBuilder.IScoreColumns;
 import com.quickblox.sdk.interfaces.IGameModeParameterValues;
 import com.quickblox.sdk.interfaces.IScore;
 
-public class Score implements IScore {
+class Score implements IScore {
 
 	private static final String TAG = "Score";
 	private String mAccount;
 
 	
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");	
 	public Score(String account, Cursor cursor){
 		this.mAccount = account;
 	}
@@ -52,7 +50,7 @@ public class Score implements IScore {
 							this.mValue = jsonReader.nextInt();
 						} else {
 							if( innerName.equals( IScore.Tags.created_at.name() ) && !isInnerNull ) {
-								this.mCreatedAt = dateFormat.parse(jsonReader.nextString());
+								this.mCreatedAt = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 							} else 
 								if( innerName.equals( IScore.Tags.game_mode_parameter_values.name() ) && !isInnerNull ) {
 									jsonReader.beginArray();

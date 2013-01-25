@@ -2,7 +2,6 @@ package com.quickblox.sdk;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.json.JSONException;
@@ -15,11 +14,10 @@ import android.util.JsonToken;
 import android.util.Log;
 
 import com.quickblox.gateway.BuildConfig;
-import com.quickblox.sdk.data.interfaces.IUserDataTableBuilder;
 import com.quickblox.sdk.data.interfaces.IUserDataTableBuilder.IColumns;
 import com.quickblox.sdk.interfaces.IUser;
 
-public class User implements IUser {
+class User implements IUser {
 
 	private static final String TAG = "User";
 
@@ -40,9 +38,6 @@ public class User implements IUser {
 	private Date mUpdateDate;
 	private Date mLastRequested;
 	private String mFullName;
-
-
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 	public User(Cursor cursor){
 		if(cursor != null){
@@ -94,7 +89,7 @@ public class User implements IUser {
 							this.mId = jsonReader.nextInt();	
 						} else {
 							if( innerName.equals( IUser.Tags.created_at.name() ) && !isInnerNull ) {
-								this.mCreatedDate = dateFormat.parse(jsonReader.nextString());
+								this.mCreatedDate = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 							} else {
 								if( innerName.equals( IUser.Tags.blob_id.name() ) && !isInnerNull ) {
 									this.mBlobId = jsonReader.nextInt();
@@ -112,7 +107,7 @@ public class User implements IUser {
 													this.mFullName = jsonReader.nextString();
 												} else {
 													if( innerName.equals( IUser.Tags.last_request_at.name() ) && !isInnerNull ) {
-														this.mLastRequested = dateFormat.parse(jsonReader.nextString());
+														this.mLastRequested = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 													} else {
 														if( innerName.equals( IUser.Tags.login.name() ) && !isInnerNull ) {
 															this.mUserLogin = jsonReader.nextString();
@@ -127,7 +122,7 @@ public class User implements IUser {
 																		this.mTwitterId = jsonReader.nextInt();
 																	} else {
 																		if( innerName.equals( IUser.Tags.updated_at.name() ) && !isInnerNull ) {
-																			this.mUpdateDate = dateFormat.parse(jsonReader.nextString());
+																			this.mUpdateDate = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 																		} else {
 																			if( innerName.equals( IUser.Tags.user_tags.name() ) && !isInnerNull ) {
 																				this.mTagList = jsonReader.nextString();

@@ -1,7 +1,5 @@
 package com.quickblox.sdk.interfaces;
 
-import java.util.Date;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

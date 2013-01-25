@@ -15,7 +15,7 @@ import com.quickblox.gateway.BuildConfig;
 import com.quickblox.sdk.data.interfaces.IRatingsDataTableBuilder;
 import com.quickblox.sdk.interfaces.IGameMode;
 
-public class GameMode implements IGameMode {
+class GameMode implements IGameMode {
 
 	private static final String TAG = "GameMode";
 

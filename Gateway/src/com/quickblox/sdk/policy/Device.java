@@ -10,7 +10,6 @@ import com.quickblox.sdk.policy.interfaces.IDevice;
 import com.quickblox.sdk.policy.interfaces.IPassword;
 import com.quickblox.sdk.policy.interfaces.ISecurity;
 import com.quickblox.sdk.policy.interfaces.ISettings;
-import com.quickblox.sdk.policy.interfaces.ISettings.Tags;
 
 public class Device implements IDevice {
 

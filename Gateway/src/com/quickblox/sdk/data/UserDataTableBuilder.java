@@ -1,9 +1,6 @@
 package com.quickblox.sdk.data;
 
-import java.util.Date;
-
 import uk.co.madmouse.core.Data.DataTableBuilder;
-
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,7 +14,6 @@ import android.util.Log;
 
 import com.quickblox.sdk.data.DataTableConstants.IDataTablesMatch;
 import com.quickblox.sdk.data.interfaces.IUserDataTableBuilder;
-import com.quickblox.sdk.data.interfaces.IApplicationTableBuilder.IColumns;
 
 public class UserDataTableBuilder extends DataTableBuilder implements IUserDataTableBuilder {
 

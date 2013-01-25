@@ -2,7 +2,6 @@ package com.quickblox.sdk;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.json.JSONException;
@@ -18,14 +17,13 @@ import com.quickblox.gateway.BuildConfig;
 import com.quickblox.sdk.data.interfaces.IRatingsDataTableBuilder.IGameModeParameterValuesColumns;
 import com.quickblox.sdk.interfaces.IGameModeParameterValues;
 
-public class GameModeParameterValues implements IGameModeParameterValues {
+class GameModeParameterValues implements IGameModeParameterValues {
 
 	private static final String TAG = "GameModeParameterValues";
 	private Integer mId;
 	private Integer mGameModeParameterId;
 	private Integer mScoreId;
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	private Date mCreatedAt;
 	private Date mUpdatedAt;
 	private String mValue;
@@ -62,10 +60,10 @@ public class GameModeParameterValues implements IGameModeParameterValues {
 						this.mValue = jsonReader.nextString();
 					} else {
 						if( innerName.equals( IGameModeParameterValues.Tags.created_at.name() ) && !isInnerNull ) {
-							this.mCreatedAt = dateFormat.parse(jsonReader.nextString());
+							this.mCreatedAt = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 						} else 
 							if( innerName.equals( IGameModeParameterValues.Tags.updated_at.name() ) && !isInnerNull ) {
-								this.mUpdatedAt = dateFormat.parse(jsonReader.nextString());
+								this.mUpdatedAt = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 
 							} else	{
 								if( innerName.equals( IGameModeParameterValues.Tags.id.name() ) && !isInnerNull ) {

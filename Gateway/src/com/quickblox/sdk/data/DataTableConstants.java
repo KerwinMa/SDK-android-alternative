@@ -1,6 +1,6 @@
 package com.quickblox.sdk.data;
 
-public interface DataTableConstants {
+interface DataTableConstants {
 	public static final String AUTHORITY = "com.quickblox.datastore";
 	public static final String MIME_CONTENT_URI = "vnd.quickblox.datastore";
 	

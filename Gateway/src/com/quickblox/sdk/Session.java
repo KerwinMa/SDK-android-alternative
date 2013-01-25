@@ -2,11 +2,9 @@ package com.quickblox.sdk;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.content.ContentValues;
-import android.os.Parcelable.Creator;
 import android.util.JsonReader;
 import android.util.JsonToken;
 import android.util.Log;
@@ -15,7 +13,7 @@ import com.quickblox.gateway.BuildConfig;
 import com.quickblox.sdk.data.interfaces.IApplicationTableBuilder.IColumns;
 import com.quickblox.sdk.interfaces.ISession;
 
-public class Session implements ISession {
+class Session implements ISession {
 
 	private static final String TAG = null;
 	private String mAccount;
@@ -31,7 +29,6 @@ public class Session implements ISession {
 	private String mToken;
 	private Integer mNonce;
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	public Session(String accountName,JsonReader jsonReader){
 		this.mAccount = accountName;
 		try {
@@ -56,7 +53,7 @@ public class Session implements ISession {
 
 						} else {
 							if( innerName.equals( ISession.Tags.created_at.name() ) && !isInnerNull ) {
-								this.mDateCreated = dateFormat.parse(jsonReader.nextString());
+								this.mDateCreated = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 							} else {
 								if( innerName.equals( ISession.Tags.device_id.name() ) && !isInnerNull ) {
 									this.mDeviceId = jsonReader.nextString();
@@ -75,10 +72,10 @@ public class Session implements ISession {
 													this.mTimeStamp = new Date(timeStamp);
 												} else {
 													if( innerName.equals( ISession.Tags.updated_at.name() ) && !isInnerNull ) {
-														this.mDateUpdated = dateFormat.parse(jsonReader.nextString());
+														this.mDateUpdated = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 													} else {
 														if( innerName.equals( ISession.Tags.user_id.name() ) && !isInnerNull ) {
-															this.mDateCreated = dateFormat.parse(jsonReader.nextString());
+															this.mDateCreated = ApiHelper.mQBDateFormater.parse(jsonReader.nextString());
 														} else {
 															jsonReader.skipValue();
 														}
